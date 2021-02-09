@@ -72,6 +72,17 @@ public class Hora
                 (segundos < 10 ? "0" : "") + segundos +
                 (horas < 12 ? " AM" : " PM"));
     }
+    
+    public String toMilitaryString()
+    {
+        return "";
+    }
+    
+    public void tick()
+    {
+    }
+    
+    
 
 }
 

@@ -1,12 +1,10 @@
-
-
 import static org.junit.Assert.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 /**
- * The test class TestHora.
+ * The test class TestTick.
  *
  * @author  (your name)
  * @version (a version number or a date)
@@ -14,46 +12,94 @@ import org.junit.Test;
 public class TestHora
 {
     /**
-     * Default constructor for test class TestHora
+     * Default constructor for test class TestTick
      */
-    public TestHora()
-    {
-    }
+    private Hora hora;
 
-    /**
-     * Sets up the test fixture.
-     *
-     * Called before every test case method.
-     */
-    @Before
-    public void setUp()
+    @Test    
+    public void testCase1()
     {
+        hora = new Hora(7,0,58);
+        hora.tick();
+        hora.tick();
+        assertEquals(hora.toString(), "7:01:00 AM");
     }
-
-    /**
-     * Tears down the test fixture.
-     *
-     * Called after every test case method.
-     */
-    @After
-    public void tearDown()
+    
+    @Test    
+    public void testCase2()
     {
+        hora = new Hora(17,59,58);
+        hora.tick();
+        hora.tick();
+        assertEquals(hora.toString(), "6:00:00 PM");
     }
-
+    
+    @Test    
+    public void testCase3()
+    {
+        hora = new Hora(23,59,58);
+        hora.tick();
+        hora.tick();
+        assertEquals(hora.toString(), "12:00:00 AM");
+    }
+    
     @Test
-    public void testCase01()
+    public void testCase4()
     {
-        Hora hora1 = new Hora();
-        hora1.setHoras(18);
-        assertEquals("6:00:00 PM", hora1.toString());
+        hora = new Hora(11,59,58);
+        hora.tick();
+        hora.tick();
+        assertEquals(hora.toString(), "12:00:00 PM");
     }
-
-    @Test
-    public void testCase02()
+    
+    @Test    
+    public void testCase5()
     {
-        Hora hora1 = new Hora(10, 15);
-        assertEquals("10:15:00 AM", hora1.toString());
+        hora = new Hora(17,13,58);
+        hora.setMinutos(30);
+        assertEquals(hora.toString(), "5:30:58 PM");
+    }
+    
+    @Test    
+    public void testCase6()
+    {
+        hora = new Hora(12,00,00);
+        hora.setMinutos(40);
+        hora.setSegundos(10);
+        hora.tick();
+        assertEquals(hora.toString(), "12:40:11 PM");
+    }
+    
+    @Test    
+    public void testCase7()
+    {
+        hora = new Hora(7,0,0);
+        hora.setHoras(19);
+        assertEquals(hora.toString(), "7:00:00 PM");
+    }
+    
+    @Test    
+    public void testCase8()
+    {
+        hora = new Hora(7,0,0);
+        assertEquals(hora.toString(), "7:00:00 AM");
+    }
+    
+    @Test
+    public void testCase9()
+    {
+        hora = new Hora(7,0,0);
+        for(int i = 1; i <= 100; i++)
+               hora.tick();
+        assertEquals(hora.toString(), "7:01:40 AM");
+    }
+    
+    @Test
+    public void testCase10()
+    {
+        hora = new Hora(7,0,0);
+        for(int i = 1; i <= 10000; i++)
+            hora.tick();
+        assertEquals(hora.toString(), "9:46:40 AM");
     }
 }
-
-
