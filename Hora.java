@@ -7,6 +7,8 @@
  */
 public class Hora
 {
+    private int horas;
+    private int minutos;
     private int segundos;
     
     public Hora(int h, int m, int s) {
@@ -35,7 +37,7 @@ public class Hora
     
     public void setHoras(int h)  // modificador
     {
-       lksdfng{lskdfnvb{dfg}dñfgljms{dfgjm{sdñ
+       horas = (horas >= 0 && horas < 24) ? h : 0;
     }
     
     public int getHoras() 
